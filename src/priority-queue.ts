@@ -84,7 +84,17 @@ class Heap<T> {
     }
 
     private isBig(index1: number, index2: number): boolean {
+        if (this.isValidIndex(index1) && !this.isValidIndex(index2)) {
+            return true
+        } else if (!this.isValidIndex(index1) && this.isValidIndex(index2)) {
+            return false
+        }
         return this.compare(this.heap[index1], this.heap[index2]) > 0;
+    }
+
+    private isValidIndex(index: number) {
+        return 0 <= index && index < this.heap.length;
+
     }
 }
 
